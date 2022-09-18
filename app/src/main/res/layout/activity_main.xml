@@ -4,11 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.google.android.material.slider.Slider
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        app:tickVisible="false"
+        android:stepSize="1.0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekbar_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:max="100"
+        android:min="0"
         android:thumb="@drawable/ic_baseline_adb_24_green" />
+
+    <TextView
+        android:id="@+id/textview_seekbar_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="SeekBar Progress" />
+
+    <Button
+        android:id="@+id/decreaseSeekbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/increaseSeekbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+" />
 </LinearLayout>
