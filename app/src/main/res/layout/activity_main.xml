@@ -9,19 +9,26 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.slider.Slider
-        android:valueFrom="0.0"
-        android:valueTo="100.0"
-        app:tickVisible="false"
-        android:stepSize="1.0"
+        android:id="@+id/slider_test"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/gradient_background"
+        android:stepSize="1.0"
+        android:value="0.0"
+        android:valueFrom="0.0"
+        android:valueTo="6.0"
+        app:haloRadius="15dp"
+        app:thumbRadius="10dp"
+        app:tickVisible="false"
+        app:trackColor="@color/trans" />
 
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/seekbar_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:max="100"
+        android:max="6"
         android:min="0"
         android:thumb="@drawable/ic_baseline_adb_24_green" />
 

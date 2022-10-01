@@ -1,16 +1,17 @@
 package com.raywenderlich.myapplication
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SeekBar
+import com.google.android.material.slider.Slider
 import com.raywenderlich.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val DELTA_VALUE = 9
+    private val processList = listOf(0, 3, 10, 20, 30, 40, 50)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         binding.apply {
             seekbarTest.apply {
-                progress = 25
                 setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                     // When Progress value changed.
                     override fun onProgressChanged(
@@ -43,12 +43,41 @@ class MainActivity : AppCompatActivity() {
 
                     // Notification that the user has finished a touch gesture
                     override fun onStopTrackingTouch(seekbar: SeekBar?) {
-                        Log.e("hahaha", "onStopTrackingTouch")
+                        Log.e(
+                            "hahaha",
+                            "onStopTrackingTouch: ${seekbar!!.progress} - progressListIndexValue: ${processList[seekbar!!.progress]}"
+                        )
                     }
                 })
             }
             increaseSeekbar.setOnClickListener { increaseProgress() }
             decreaseSeekbar.setOnClickListener { decreaseProgress() }
+            sliderTest.apply {
+                addOnChangeListener { slider, value, fromUser ->
+                    if (fromUser) {
+                        Log.e("hahaha", "addOnChangeListener: $value")
+
+                    }
+                }
+                addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
+                    override fun onStartTrackingTouch(slider: Slider) {
+                        // Responds to when slider's touch event is being started
+                        Log.e("hahaha", "onStartTrackingTouch: ${slider.value}")
+                    }
+
+                    override fun onStopTrackingTouch(slider: Slider) {
+                        // Responds to when slider's touch event is being stopped
+                        Log.e(
+                            "hahaha",
+                            "onStopTrackingTouch: ${slider.value}  - progressListIndexValue: ${processList[slider.value.toInt()]}"
+                        )
+                    }
+                })
+
+                setLabelFormatter { value: Float ->
+                    "${processList[value.toInt()]}"
+                }
+            }
         }
     }
 
